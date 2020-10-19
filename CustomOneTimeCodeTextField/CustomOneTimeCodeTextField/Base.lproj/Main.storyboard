@@ -16,12 +16,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="crU-w0-ha8">
+                                <rect key="frame" x="95" y="49" width="41.5" height="20.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GaU-xQ-QUi">
+                                        <rect key="frame" x="0.0" y="0.0" width="41.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xnZ-t9-WjO" customClass="CustomOneTimeCodeTextField" customModule="CustomOneTimeCodeTextField" customModuleProvider="target">
                                 <rect key="frame" x="50" y="44" width="314" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="fRM-ae-ete"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="10"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="udlHeight">
@@ -41,13 +52,33 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Goa-0O-CHY">
+                                <rect key="frame" x="57" y="115" width="240" height="128"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DyO-tu-YoW">
+                                        <rect key="frame" x="8" y="8" width="224" height="112"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="DyO-tu-YoW" firstAttribute="leading" secondItem="Goa-0O-CHY" secondAttribute="leading" constant="8" id="66X-qb-lTw"/>
+                                    <constraint firstAttribute="trailing" secondItem="DyO-tu-YoW" secondAttribute="trailing" constant="8" id="HxB-1a-CIY"/>
+                                    <constraint firstItem="DyO-tu-YoW" firstAttribute="top" secondItem="Goa-0O-CHY" secondAttribute="top" constant="8" id="Zfm-4m-TOz"/>
+                                    <constraint firstItem="DyO-tu-YoW" firstAttribute="bottom" secondItem="Goa-0O-CHY" secondAttribute="bottom" constant="-8" id="bbH-dh-4vv"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Goa-0O-CHY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="57" id="GO2-Nc-kvb"/>
+                            <constraint firstItem="Goa-0O-CHY" firstAttribute="top" secondItem="xnZ-t9-WjO" secondAttribute="bottom" constant="21" id="WgG-D5-SBq"/>
                             <constraint firstItem="xnZ-t9-WjO" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="XE3-RA-Sfh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Goa-0O-CHY" secondAttribute="trailing" constant="117" id="YNo-jC-orN"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xnZ-t9-WjO" secondAttribute="trailing" constant="50" id="cEG-yD-W3N"/>
                             <constraint firstItem="xnZ-t9-WjO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="w7L-Ul-L9g"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Goa-0O-CHY" secondAttribute="bottom" constant="619" id="wxl-bW-U3E"/>
                         </constraints>
                     </view>
                     <connections>
@@ -56,7 +87,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="141" y="-607"/>
+            <point key="canvasLocation" x="-42.028985507246382" y="-763.39285714285711"/>
         </scene>
     </scenes>
     <resources>

@@ -18,6 +18,7 @@ class CustomOneTimeCodeTextField: UITextField {
     
     @IBInspectable public var udlSpacing: CGFloat = 10
     @IBInspectable public var characterLimit: Int = 5
+    @IBInspectable public var udlMargin: CGFloat = 5
     @IBInspectable public var udlHeight: CGFloat = 3
     
     @IBInspectable public var udlColor: UIColor = UIColor.darkGray
@@ -45,8 +46,8 @@ class CustomOneTimeCodeTextField: UITextField {
         self.customOneTimeCodeTextFieldDelegate = customOneTimeCodeTextFieldDelegate
         
         setupTextField()
-        setupLables()
         setupUnderLines()
+        setupLables()
         addGestureRecognizer(tapRecognizer)
         
     }
@@ -100,11 +101,13 @@ class CustomOneTimeCodeTextField: UITextField {
         
         labelsStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            labelsStackView.topAnchor.constraint(equalTo: topAnchor),
+            labelsStackView.topAnchor.constraint(greaterThanOrEqualTo: topAnchor),
             labelsStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             labelsStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            labelsStackView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            labelsStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -udlHeight - udlMargin)
         ])
+        
+        labelsStackView.backgroundColor = UIColor.red
     }
     
     private func setupUnderLines() {
