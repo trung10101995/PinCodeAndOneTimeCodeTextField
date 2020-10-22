@@ -106,8 +106,6 @@ class CustomOneTimeCodeTextField: UITextField {
             labelsStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
             labelsStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -udlHeight - udlMargin)
         ])
-        
-        labelsStackView.backgroundColor = UIColor.red
     }
     
     private func setupUnderLines() {
