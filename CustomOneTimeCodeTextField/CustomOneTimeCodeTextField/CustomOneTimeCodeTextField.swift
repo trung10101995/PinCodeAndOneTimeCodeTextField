@@ -39,6 +39,8 @@ class CustomOneTimeCodeTextField: UITextField {
     override func awakeFromNib() {
         super.awakeFromNib()
 //        configView(customOneTimeCodeTextFieldDelegate: nil)
+        self.keyboardType = .numberPad
+        self.becomeFirstResponder()
     }
     
     func configView(customOneTimeCodeTextFieldDelegate: CustomOneTimeCodeTextFieldDelegate?) {
@@ -49,7 +51,6 @@ class CustomOneTimeCodeTextField: UITextField {
         setupUnderLines()
         setupLables()
         addGestureRecognizer(tapRecognizer)
-        
     }
     
     private func clearSetting() {
@@ -86,7 +87,7 @@ class CustomOneTimeCodeTextField: UITextField {
             label.translatesAutoresizingMaskIntoConstraints = false
             label.textAlignment = .center
             label.font = self.font
-            label.backgroundColor = self.backgroundColor
+            label.backgroundColor = UIColor.clear
             label.tintColor = self.tintColor
             label.isUserInteractionEnabled = true
             
