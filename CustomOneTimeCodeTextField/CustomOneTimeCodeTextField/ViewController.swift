@@ -21,7 +21,7 @@ class ViewController: UIViewController {
 
 extension ViewController: CustomOneTimeCodeTextFieldDelegate {
     func didEnterLastTextField(code: String) {
-        print("XXX")
+        print("didEnterLastTextField")
     }
 }
 
