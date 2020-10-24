@@ -3,10 +3,11 @@
 # @IBOutlet
 @IBOutlet weak var tf: CustomOneTimeCodeTextField!
 
-# Congif
+# Config
 tf.configView(customOneTimeCodeTextFieldDelegate: self)
  
 # Delegate
 func didEnterLastTextField(code: String) {
   print("didEnterLastTextField")
 }
+
