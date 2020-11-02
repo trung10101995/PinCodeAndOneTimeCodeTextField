@@ -24,6 +24,30 @@ class CustomOneTimeCodeTextField: UITextField {
     @IBInspectable public var udlColor: UIColor = UIColor.darkGray
     @IBInspectable public var udlUpdatedColor: UIColor = UIColor.blue
     
+    private var timerFlicker: Timer?
+    
+    private var oldFlicerUnderLinesView: UIView?
+    
+    private var isFlickerUdl: Bool = true
+    
+    private var currentFlicerUnderLinesView: UIView? {
+        didSet {
+            
+            if !isFlickerUdl {
+                return
+            }
+            
+            oldFlicerUnderLinesView?.backgroundColor = udlColor
+            oldFlicerUnderLinesView = currentFlicerUnderLinesView
+            if currentFlicerUnderLinesView == nil {
+                timerFlicker?.invalidate()
+            } else {
+                currentFlicerUnderLinesView?.backgroundColor = udlUpdatedColor
+                initTimer()
+            }
+        }
+    }
+    
     private var oneTimeCodeLabels = [UILabel]()
     private var oneTimeCodeUnderLinesView = [UIView]()
     
@@ -38,15 +62,24 @@ class CustomOneTimeCodeTextField: UITextField {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-//        configView(customOneTimeCodeTextFieldDelegate: nil)
+        //        configView(customOneTimeCodeTextFieldDelegate: nil)
         self.keyboardType = .numberPad
         self.becomeFirstResponder()
     }
     
-    func configView(customOneTimeCodeTextFieldDelegate: CustomOneTimeCodeTextFieldDelegate?) {
+    func initTimer() {
+        timerFlicker?.invalidate()
+        
+        timerFlicker = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: { [weak self] (timer) in
+            self?.currentFlicerUnderLinesView?.backgroundColor = self?.currentFlicerUnderLinesView?.backgroundColor ?? UIColor.clear == UIColor.clear ? self?.udlUpdatedColor : UIColor.clear
+            
+        })
+    }
+    
+    func configView(customOneTimeCodeTextFieldDelegate: CustomOneTimeCodeTextFieldDelegate?, isFlickerUdl: Bool = true) {
         clearSetting()
         self.customOneTimeCodeTextFieldDelegate = customOneTimeCodeTextFieldDelegate
-        
+        self.isFlickerUdl = isFlickerUdl
         setupTextField()
         setupUnderLines()
         setupLables()
@@ -54,11 +87,11 @@ class CustomOneTimeCodeTextField: UITextField {
     }
     
     private func clearSetting() {
-        self.customOneTimeCodeTextFieldDelegate = nil
+        customOneTimeCodeTextFieldDelegate = nil
         labelsStackView.removeFromSuperview()
         labelsStackView = UIStackView()
         oneTimeCodeLabels.removeAll()
-        
+        isFlickerUdl = true
         underLinesStackView.removeFromSuperview()
         underLinesStackView = UIStackView()
         oneTimeCodeUnderLinesView.removeAll()
@@ -122,7 +155,11 @@ class CustomOneTimeCodeTextField: UITextField {
             
             underLine.isUserInteractionEnabled = true
             
-            underLine.backgroundColor = i == 1 ? udlUpdatedColor : udlColor
+            if  i == 1 {
+                currentFlicerUnderLinesView = underLine
+            } else {
+                underLine.backgroundColor = udlColor
+            }
             
             underLinesStackView.addArrangedSubview(underLine)
             
@@ -168,7 +205,7 @@ class CustomOneTimeCodeTextField: UITextField {
         for i in 0 ..< oneTimeCodeUnderLinesView.count {
             let currentUnderLinesView = oneTimeCodeUnderLinesView[i]
             if i == text.count {
-                currentUnderLinesView.backgroundColor = udlUpdatedColor
+                currentFlicerUnderLinesView = currentUnderLinesView
             } else {
                 currentUnderLinesView.backgroundColor = udlColor
             }
