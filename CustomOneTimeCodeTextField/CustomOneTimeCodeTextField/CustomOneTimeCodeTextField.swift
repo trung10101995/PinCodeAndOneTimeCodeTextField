@@ -105,7 +105,11 @@ class CustomOneTimeCodeTextField: UITextField {
         text = ""
         tintColor = .clear
         textColor = .clear
-        textContentType = .oneTimeCode
+        if #available(iOS 12.0, *) {
+            textContentType = .oneTimeCode
+        } else {
+            textContentType = .name
+        }
         borderStyle = .none
         
         addTarget(self, action: #selector(textDidChange), for: .editingChanged)
