@@ -24,6 +24,10 @@ class CustomOneTimeCodeTextField: UITextField {
     @IBInspectable public var udlColor: UIColor = UIColor.darkGray
     @IBInspectable public var udlUpdatedColor: UIColor = UIColor.blue
     
+    deinit {
+        timerFlicker?.invalidate()
+    }
+    
     private var timerFlicker: Timer?
     
     private var oldFlicerUnderLinesView: UIView?
